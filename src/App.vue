@@ -1,21 +1,22 @@
 <template>
   <payment-form></payment-form>
 </template>
-
 <script>
-import PaymentForm from "./components/PaymentForm.vue";
+import PaymentForm from './components/PaymentForm.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    PaymentForm,
-  },
-};
+    PaymentForm
+  }
+}
 </script>
 
 <style>
+@import url('scss/_fonts.scss');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
