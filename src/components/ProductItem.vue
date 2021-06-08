@@ -1,6 +1,6 @@
 <template>
   <div class="product-container">
-    <img src="../assets/boot.svg" alt="boot">
+    <img src="../assets/boot.svg" alt="boot" />
     <div class="product-info">
       <div class="product-info__header">
         <h3>The Chelsea Boot</h3>
@@ -68,5 +68,4 @@ export default {
 .product-quantity {
   margin-top: 1px;
 }
-
 </style>

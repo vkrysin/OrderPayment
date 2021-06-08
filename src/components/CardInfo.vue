@@ -3,25 +3,38 @@
     <form>
       <header>Payment</header>
       <div class="note">
-        <img src="../assets/lock.svg" alt="lock">
+        <img src="../assets/lock.svg" alt="lock" />
         <div class="note__text">
           This is a secure 128-bit SSL encrypted payment
         </div>
       </div>
       <div class="card-info__header">Cardholder Name</div>
-      <input type="text" name="cardholder-name" id=""
-        placeholder="Name as it appears on your card">
+      <input
+        type="text"
+        name="cardholder-name"
+        id=""
+        placeholder="Name as it appears on your card"
+      />
       <div class="card-info__header">Card Number</div>
-      <input type="text" name="cardholder-name" id=""
-        placeholder="XXXX XXXX XXXX XXXX XXXX">
+      <input
+        type="text"
+        name="cardholder-name"
+        id=""
+        placeholder="XXXX XXXX XXXX XXXX XXXX"
+      />
       <div class="wrapper">
         <div class="wrapper__item">
           <div class="card-info__header">Expire Date</div>
-          <input type="text" name="cardholder-name" id="" placeholder="MM / YY">
+          <input
+            type="text"
+            name="cardholder-name"
+            id=""
+            placeholder="MM / YY"
+          />
         </div>
         <div class="wrapper__item">
           <div class="card-info__header">Security Code</div>
-          <input type="text" name="cardholder-name" id="" placeholder="">
+          <input type="text" name="cardholder-name" id="" placeholder="" />
         </div>
       </div>
       <button type="submit">Pay Securely</button>
@@ -30,9 +43,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style scoped lang="scss">
@@ -80,7 +91,7 @@ header {
 
   .note__text {
     margin-left: 4px;
-    @include connectFont('Helvetica', 300, 15px, #6B6B6B);
+    @include connectFont('Helvetica', 300, 15px, #6b6b6b);
   }
 }
 
@@ -116,7 +127,7 @@ button {
 
   &:hover {
     background: rgba(90, 16, 148, 0.75);
-    box-shadow: 0 5px 15px rgba(black,.1);
+    box-shadow: 0 5px 15px rgba(black, 0.1);
   }
 
   &:active {
