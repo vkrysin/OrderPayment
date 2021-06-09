@@ -1,24 +1,64 @@
 <template>
-  <header>
-    <div class="container">
-      <div class="logo">
-        <img src="../assets/logo.svg" alt="logo" />
-        <h1>Front-end Developer Test Task</h1>
-      </div>
-      <div class="goods-basket">
-        <span>cart</span>
-        <div class="goods-basket-total">
-          <img src="../assets/basket.svg" alt="basket" />
-          <div class="goods-basket-total__value">3</div>
+  <div class="main">
+    <header>
+      <div class="payment-container">
+        <div class="logo">
+          <img src="../assets/logo.svg" alt="logo" />
+          <h1>Front-end Developer Test Task</h1>
+        </div>
+        <div class="goods-basket">
+          <span>cart</span>
+          <div class="goods-basket-total">
+            <img src="../assets/basket.svg" alt="basket" />
+            <div class="goods-basket-total__value">3</div>
+          </div>
         </div>
       </div>
+    </header>
+    <div class="content">
+      <div class="payment-process">
+        <div class="panel">
+          <div class="panel__item panel__item_active">Shipping</div>
+          <div class="panel__arrow">
+            <img src="../assets/right-arrow.svg" alt="rightArrow" />
+          </div>
+          <div class="panel__item">Billing</div>
+          <div class="panel__arrow">
+            <img src="../assets/right-arrow.svg" alt="rightArrow" />
+          </div>
+          <div class="panel__item">Payment</div>
+        </div>
+        <shipping-info />
+        <billing-info style="display: none" />
+        <card-info style="display: none" />
+        <order-info style="display: none" />
+      </div>
+      <order-summary />
     </div>
-  </header>
+  </div>
 </template>
 
 <script>
+import OrderSummary from './OrderSummary.vue';
+import CardInfo from './CardInfo.vue';
+import OrderInfo from './OrderInfo.vue';
+import ShippingInfo from './ShippingInfo.vue';
+import BillingInfo from './BillingInfo.vue';
+
 export default {
-  name: 'PaymentForm'
+  name: 'PaymentForm',
+  components: {
+    OrderSummary,
+    CardInfo,
+    OrderInfo,
+    ShippingInfo,
+    BillingInfo
+  },
+  data() {
+    return {
+      name: ''
+    };
+  }
 }
 </script>
 
@@ -35,7 +75,24 @@ header {
   border-image-slice: 1;
 }
 
-.container {
+.panel {
+  margin-top: 23px;
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+  @include connectFont('Helvetica', 400, 12px, #979797);
+}
+
+.panel__item,
+.panel__arrow {
+  margin-left: 15px;
+}
+
+.panel__item_active {
+  color: #5a1094;
+}
+
+.payment-container {
   margin: 0 auto;
   height: 50px;
   max-width: 700px;
@@ -80,6 +137,12 @@ header {
   }
 }
 
+.content {
+  margin: 0 auto;
+  width: 700px;
+  display: flex;
+}
+
 @media screen and (max-width: 768px) {
   .container {
     max-width: 400px;
@@ -99,5 +162,29 @@ header {
       }
     }
   }
+}
+</style>
+
+<style lang="scss">
+@import '../scss/_mixins.scss';
+
+.display-none {
+  display: none;
+}
+
+.input-invalid,
+.select-invalid {
+  border-color: #e30000;
+  background: #fff2f4;
+
+  &::placeholder {
+    color: #e30000;
+  }
+}
+
+.error-text {
+  margin-top: 5px;
+  margin-left: 3px;
+  @include connectFont('Helvetica', 400, 12px, #e30000);
 }
 </style>
