@@ -28,10 +28,13 @@
           </div>
           <div class="panel__item">Payment</div>
         </div>
-        <shipping-info />
-        <billing-info style="display: none" />
-        <card-info style="display: none" />
-        <order-info style="display: none" />
+        <shipping-info
+          v-if="isShippingNotCompleted"
+          @shippingCompleted="nextStepAfterShipping"
+        />
+        <billing-info v-else-if="isBillingNotCompleted" />
+        <card-info v-else-if="isCardNotCompleted" />
+        <order-info v-else />
       </div>
       <order-summary />
     </div>
@@ -54,12 +57,26 @@ export default {
     ShippingInfo,
     BillingInfo
   },
+
   data() {
     return {
-      name: ''
+      name: '',
+      isShippingNotCompleted: true,
+      isBillingNotCompleted: true,
+      isCardNotCompleted: true,
     };
+  },
+
+  methods: {
+    nextStepAfterShipping() {
+      this.$el
+        .querySelector('.panel')
+        .querySelectorAll('.panel__item')[1]
+        .classList.add('panel__item_active');
+      this.isShippingNotCompleted = false;
+    }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -67,6 +84,10 @@ export default {
 
 * {
   box-sizing: border-box;
+}
+
+.display-none {
+  display: none;
 }
 
 header {
@@ -167,10 +188,6 @@ header {
 
 <style lang="scss">
 @import '../scss/_mixins.scss';
-
-.display-none {
-  display: none;
-}
 
 .input-invalid,
 .select-invalid {
