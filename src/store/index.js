@@ -3,6 +3,6 @@ import payment from './payment.module';
 
 export const store = createStore({
   modules: {
-    payment
-  }
+    payment,
+  },
 });
