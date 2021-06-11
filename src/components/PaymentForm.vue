@@ -32,8 +32,14 @@
           v-if="isShippingNotCompleted"
           @shippingCompleted="nextStepAfterShipping"
         />
-        <billing-info v-else-if="isBillingNotCompleted" />
-        <card-info v-else-if="isCardNotCompleted" />
+        <billing-info
+          v-else-if="isBillingNotCompleted"
+          @billingCompleted="nextStepAfterBilling"
+        />
+        <card-info
+          v-else-if="isCardNotCompleted"
+          @cardCompleted="nextStepAfterCard"
+        />
         <order-info v-else />
       </div>
       <order-summary />
@@ -55,7 +61,7 @@ export default {
     CardInfo,
     OrderInfo,
     ShippingInfo,
-    BillingInfo
+    BillingInfo,
   },
 
   data() {
@@ -63,7 +69,7 @@ export default {
       name: '',
       isShippingNotCompleted: true,
       isBillingNotCompleted: true,
-      isCardNotCompleted: true,
+      isCardNotCompleted: false,
     };
   },
 
@@ -74,8 +80,20 @@ export default {
         .querySelectorAll('.panel__item')[1]
         .classList.add('panel__item_active');
       this.isShippingNotCompleted = false;
-    }
-  }
+    },
+    nextStepAfterBilling() {
+      this.$el
+        .querySelector('.panel')
+        .querySelectorAll('.panel__item')[2]
+        .classList.add('panel__item_active');
+      this.isBillingNotCompleted = false;
+    },
+
+    nextStepAfterCard() {
+      this.$el.querySelector('.panel').classList.add('display-none');
+      this.isCardNotCompleted = false;
+    },
+  },
 };
 </script>
 
@@ -94,11 +112,12 @@ header {
   border-bottom: 1px solid transparent;
   border-image: linear-gradient(#7e00e8 0%, #ff1876 54.17%, #bb0cb2 100%);
   border-image-slice: 1;
+  background: #fff;
 }
 
 .panel {
   margin-top: 23px;
-  margin-left: 25px;
+  padding-left: 25px;
   display: flex;
   align-items: center;
   @include connectFont('Helvetica', 400, 12px, #979797);
@@ -106,7 +125,7 @@ header {
 
 .panel__item,
 .panel__arrow {
-  margin-left: 15px;
+  padding-left: 15px;
 }
 
 .panel__item_active {
@@ -159,9 +178,15 @@ header {
 }
 
 .content {
-  margin: 0 auto;
+  margin: 45px auto 0;
   width: 700px;
   display: flex;
+  border-radius: 5px;
+
+  .payment-process {
+    width: 400px;
+    background: #ffffff;
+  }
 }
 
 @media screen and (max-width: 768px) {

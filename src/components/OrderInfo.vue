@@ -6,21 +6,43 @@
       <p class="order-additional-info__number">Order number is: 188787788</p>
       <p class="order-additional-info__mail">
         Your will recieve an email confirmation shortly to
-        <a href="mailto:jonathan.smith@gmail.com">jonathan.smith@gmail.com</a>
+        <a :href="'mailto:' + mail">{{ mail }}</a>
       </p>
       <p class="order-additional-info__delivery-day">
         Estimated delivery Day is
-        <span class="bold">Friday 1st April 2016</span>
+        <span class="bold">{{ deliveryDate }} </span>
       </p>
     </div>
-    <a class="recipe" href="#">Print Recipe</a>
+    <div class="order-data"></div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: 'OrderInfo'
-}
+  name: 'OrderInfo',
+  // data() {
+  //   return {
+  //     mail: this.mail(),
+  //   }
+  // },
+  computed: {
+    ...mapGetters(['mail']),
+    deliveryDate() {
+      let date = new Date();
+      date.setDate(date.getDate() + 3);
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+
+      return date.toLocaleDateString('en-US', options);
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -48,7 +70,7 @@ header {
     @include connectFont('Helvetica', 300, 16px, #2b2525);
 
     .bold {
-      font-weight: bold;
+      font-weight: 500;
     }
   }
 
@@ -75,10 +97,10 @@ header {
     margin-top: 14px;
     display: flex;
     flex-direction: column;
+
+    span {
+      margin-top: 3px;
+    }
   }
-}
-.recipe {
-  color: #5a1094;
-  text-underline-offset: 1px;
 }
 </style>

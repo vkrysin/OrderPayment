@@ -12,38 +12,65 @@
       <input
         type="text"
         name="cardholder-name"
-        id=""
         placeholder="Name as it appears on your card"
+        v-model="cardholderName"
       />
       <div class="card-info__header">Card Number</div>
       <input
         type="text"
-        name="cardholder-name"
-        id=""
+        name="card-number"
         placeholder="XXXX XXXX XXXX XXXX XXXX"
+        v-model="cardNumber"
       />
       <div class="wrapper">
         <div class="wrapper__item">
           <div class="card-info__header">Expire Date</div>
           <input
             type="text"
-            name="cardholder-name"
-            id=""
+            name="card-date"
             placeholder="MM / YY"
+            v-model="cardDate"
           />
         </div>
         <div class="wrapper__item">
           <div class="card-info__header">Security Code</div>
-          <input type="text" name="cardholder-name" id="" placeholder="" />
+          <input type="text" name="card-code" v-model="cardCode" />
         </div>
       </div>
-      <button type="submit">Pay Securely</button>
+      <button type="submit" @click="sendData">Pay Securely</button>
     </form>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapMutations } from 'vuex';
+export default {
+  data() {
+    return {
+      cardholderName: '',
+      cardNumber: '',
+      cardDate: '',
+      cardCode: '',
+    };
+  },
+  emits: ['cardCompleted'],
+
+  methods: {
+    ...mapMutations(['setCardData']),
+
+    sendData() {
+      const cardData = {
+        cardholderName: this.cardholderName,
+        cardNumber: this.cardNumber,
+        cardDate: this.cardDate,
+        cardCode: this.cardCode,
+      };
+      this.setCardData(cardData);
+
+      this.$emit('cardCompleted');
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
