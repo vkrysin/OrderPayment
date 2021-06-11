@@ -68,6 +68,7 @@
       type="button"
       ref="btn-submit"
       @click="sendData"
+      disabled
     >
       Continue
     </button>
@@ -90,9 +91,9 @@ export default {
         // Apt, Suite, Bldg, Gate Code
         directionalInfo: '',
         city: '',
-        country: '',
-        zip: ''
-      }
+        country: 'Country',
+        zip: '',
+      },
     };
   },
 
@@ -164,6 +165,7 @@ export default {
       }
 
       this.$refs['btn-submit'].classList.remove('disabled');
+      this.$refs['btn-submit'].disabled = false;
     },
 
     sendData() {
@@ -176,14 +178,14 @@ export default {
           directionalInfo: this.address.directionalInfo,
           city: this.address.city,
           country: this.address.country,
-          zip: this.address.zip
-        }
+          zip: this.address.zip,
+        },
       };
 
       this.setShippingAddress(formData);
       this.$emit('shippingCompleted');
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -317,6 +319,6 @@ header {
 @import '../scss/_mixins.scss';
 
 .option-text {
-  @include connectFont('Helvetica', 300, 18px, #1d1d1f);
+  @include connectFont('Helvetica', 300, 16px, #000000);
 }
 </style>
