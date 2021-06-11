@@ -1,21 +1,23 @@
 <template>
   <div class="product-container">
-    <img src="../assets/boot.svg" alt="boot" />
+    <img :src="img" alt="boot" />
     <div class="product-info">
       <div class="product-info__header">
-        <h3>The Chelsea Boot</h3>
-        <div class="product-info__price">$235</div>
+        <h3>{{ header }}</h3>
+        <div class="product-info__price">${{ price }}</div>
       </div>
-      <div class="product-color">Black</div>
-      <div class="product-quantity">Quantity: 1</div>
+      <div class="product-color">{{ color }}</div>
+      <div class="product-quantity">Quantity: {{ quanity }}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ProductItem'
-}
+  name: 'ProductItem',
+
+  props: ['header', 'color', 'quanity', 'img', 'price'],
+};
 </script>
 
 <style scoped lang="scss">
@@ -48,7 +50,7 @@ export default {
   h3,
   .product-info__price {
     margin: 0;
-    @include connectFont('Helvetica', 400, 12px, #777879);
+    @include connectFont('Helvetica', 300, 12px, #6a6a6b);
   }
 
   .product-info__price {
