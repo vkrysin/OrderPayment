@@ -140,4 +140,10 @@ header {
   margin: 216px 20px 15px 35px;
   @include connectFont('Helvetica', 300, 10px, #9c9c9c);
 }
+
+@media screen and (max-width: 768px) {
+  .summary-container {
+    display: none;
+  }
+}
 </style>

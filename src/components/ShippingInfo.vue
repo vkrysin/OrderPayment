@@ -313,6 +313,19 @@ header {
 .disabled {
   background: rgb(155, 154, 154);
 }
+
+@media screen and (max-width: 768px) {
+  .shipping-container {
+    margin-left: 30px;
+    width: auto;
+  }
+}
+@media screen and (max-width: 415px) {
+  .shipping-container {
+    margin-left: 10px;
+    width: auto;
+  }
+}
 </style>
 
 <style lang="scss">

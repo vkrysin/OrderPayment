@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <header>
-      <div class="payment-container">
+      <div class="payment-header-container">
         <div class="logo">
           <img src="../assets/logo.svg" alt="logo" />
           <h1>Front-end Developer Test Task</h1>
@@ -132,8 +132,9 @@ header {
   color: #5a1094;
 }
 
-.payment-container {
-  margin: 0 auto;
+.payment-header-container {
+  margin: 10px auto;
+  padding: 0 10px;
   height: 50px;
   max-width: 700px;
   display: flex;
@@ -184,6 +185,8 @@ header {
   border-radius: 5px;
 
   .payment-process {
+    margin: 0 auto;
+    min-height: 600px;
     width: 400px;
     background: #ffffff;
   }
@@ -193,20 +196,16 @@ header {
   .container {
     max-width: 400px;
   }
+  .content {
+    width: auto;
+  }
+  .panel {
+    padding-left: 15px;
+  }
 }
 @media screen and (max-width: 415px) {
-  .container {
-    margin-right: 20px;
-    height: auto;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .goods-basket {
-    .goods-basket-total {
-      .goods-basket-total__value {
-        top: -7px;
-      }
-    }
+  .panel {
+    padding-left: 0;
   }
 }
 </style>
@@ -229,4 +228,5 @@ header {
   margin-left: 3px;
   @include connectFont('Helvetica', 400, 12px, #e30000);
 }
+
 </style>
